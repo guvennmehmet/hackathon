@@ -11,7 +11,12 @@ class StoryCard extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(story.storyTitle),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            '/story-detail',
+            arguments: story,
+          );
+        },
       ),
     );
   }
