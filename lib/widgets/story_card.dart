@@ -9,6 +9,13 @@ class StoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: const BorderSide(
+          color: Colors.pink,
+          width: 2.0,
+        ),
+      ),
       child: ListTile(
         title: Text(story.storyTitle),
         onTap: () {
@@ -17,6 +24,10 @@ class StoryCard extends StatelessWidget {
             arguments: story,
           );
         },
+        trailing: const Icon(
+            Icons.arrow_forward_ios,
+          color: Colors.purple,
+        ),
       ),
     );
   }
