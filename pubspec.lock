@@ -107,6 +107,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  palette_generator:
+    dependency: "direct dev"
+    description:
+      name: palette_generator
+      sha256: "6a44587e4c4e4ca670f89840615bdd7ca3de708805ccee0e2519cda9bb42dc98"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
   path:
     dependency: transitive
     description:
@@ -186,3 +194,4 @@ packages:
     version: "0.1.4-beta"
 sdks:
   dart: ">=3.1.4 <4.0.0"
+  flutter: ">=1.15.21"
