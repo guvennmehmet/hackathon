@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hackathon/models/story.dart';
+import 'package:hackathon/pages/favorites_page.dart';
 import 'package:hackathon/pages/stories_page.dart';
 import 'package:hackathon/routes.dart';
 import 'package:hackathon/widgets/bottom_nav.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(StoryAdapter());
+  await Hive.openBox<Story>('favoriteStories');
+
   runApp(MyApp());
 }
 
@@ -26,17 +34,10 @@ class _MyAppState extends State<MyApp> {
           title: const Text("Yapay Zeka"),
         ),
         body: const Center(
-          child: Text("yapay zeka sayfası"),
+          child: Text("Yapay Zeka sayfası"),
         ),
       ),
-      Scaffold(
-        appBar: AppBar(
-          title: const Text("Favoriler"),
-        ),
-        body: const Center(
-          child: Text("favoriler sayfası"),
-        ),
-      ),
+      FavoritesPage(),
     ];
   }
 
