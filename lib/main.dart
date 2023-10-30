@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/pages/ai_page.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hackathon/models/story.dart';
@@ -29,14 +30,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _pages = [
       const StoriesPage(),
-      Scaffold(
-        appBar: AppBar(
-          title: const Text("Yapay Zeka"),
-        ),
-        body: const Center(
-          child: Text("Yapay Zeka sayfası"),
-        ),
-      ),
+      const AiPage(),
       FavoritesPage(),
     ];
   }
