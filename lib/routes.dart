@@ -17,12 +17,12 @@ class Routes {
             builder: (_) => StoryDetailPage(
                 story: args, scrollController: scrollController));
       case '/favorite-story-detail':
-        final args = settings.arguments as Story; // Assuming you have a FavoriteStory model
+        final args = settings.arguments as Story;
         return MaterialPageRoute(
             builder: (_) => StoryDetailPage(
                 story: args, scrollController: scrollController));
       case '/ai-story-detail':
-        final args = settings.arguments as Map<String, String>; // Map ile argümanı al
+        final args = settings.arguments as Map<String, String>;
         return MaterialPageRoute(
             builder: (_) => AiStoryDetailPage(
                 subject: args['subject'] as String,
