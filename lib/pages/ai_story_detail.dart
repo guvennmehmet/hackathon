@@ -39,7 +39,7 @@ class _AiStoryDetailPageState extends State<AiStoryDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElevatedButton(
-              onPressed: generateStory, // Hikaye oluştur metodu
+              onPressed: generateStory,
               child: const Text("Hikaye Oluştur"),
             ),
             const SizedBox(height: 16),
