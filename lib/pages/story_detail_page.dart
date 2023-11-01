@@ -44,6 +44,7 @@ class _StoryDetailPageState extends State<StoryDetailPage> {
           },
         ),
         title: Text(widget.story.storyTitle),
+        backgroundColor: appBarColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.volume_up_sharp),
