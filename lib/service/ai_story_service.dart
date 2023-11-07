@@ -5,7 +5,7 @@ class AIStoryService {
   static const String apiKey = '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';
   static const String model = 'gpt-3.5-turbo-instruct';
 
-  static Future<String> generateStory(String prompt) async {
+  static Future<List<String>> generateStory(String prompt, int length) async {
     final Map<String, String> headers = {
       'Authorization': 'Bearer $apiKey',
       'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ class AIStoryService {
       'model': model,
       'prompt': prompt,
       'temperature': 0.9,
-      'max_tokens': 500,
+      'max_tokens': length,
       'top_p': 1,
       'frequency_penalty': 0,
       'presence_penalty': 0.6,
@@ -33,12 +33,19 @@ class AIStoryService {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final generatedStory = data['choices'][0]['text'];
-      final fixedStory = fixCharacterEncoding(generatedStory);
-      print(fixedStory);
-      return fixedStory;
+      var fixedStory = fixCharacterEncoding(generatedStory);
+      final fixedStoryTitle = takeTheTitle(fixedStory);
+      fixedStory= fixedStory.substring(fixedStory.indexOf(")") + 1, fixedStory.length);
+      print("fixedStory: $fixedStory");
+      return [fixedStory, fixedStoryTitle];
     } else {
       throw Exception('Hikaye oluşturma hatası: ${response.reasonPhrase}');
     }
+  }
+
+  static String takeTheTitle(String text) {
+    final title = text.substring(text.indexOf("(") + 1, text.indexOf(')'));
+    return title;
   }
 
   static String fixCharacterEncoding(String text) {
