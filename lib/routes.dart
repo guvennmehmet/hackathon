@@ -22,11 +22,12 @@ class Routes {
             builder: (_) => StoryDetailPage(
                 story: args, scrollController: scrollController));
       case '/ai-story-detail':
-        final args = settings.arguments as Map<String, String>;
+        final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
             builder: (_) => AiStoryDetailPage(
                 subject: args['subject'] as String,
-                character: args['character'] as String));
+                time: args['time'] as String,
+                length: args['length'] as int));
       default:
         return MaterialPageRoute(builder: (_) => const StoriesPage());
     }
