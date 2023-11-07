@@ -9,7 +9,8 @@ class AiPage extends StatefulWidget {
 
 class _AiPageState extends State<AiPage> {
   var subjectSelectedCard = -1;
-  var characterSelectedCard = -1;
+  var timeSelectedCard = -1;
+  var lengthSelectedCard = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +32,20 @@ class _AiPageState extends State<AiPage> {
             child: ListView.separated(
               padding: const EdgeInsets.all(8),
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
+              itemCount: subjectList.length,
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 8);
               },
               itemBuilder: (context, index) {
                 return Card(
-                  shape: const RoundedRectangleBorder(),
-                  color: (subjectSelectedCard == index) ? Colors.blue : Colors
-                      .white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: (subjectSelectedCard == index) ? Colors.blue : Colors
+                          .white,
+                      width: 2.0,
+                    ),
+                  ),
+                  color: Colors.white,
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -75,7 +81,7 @@ class _AiPageState extends State<AiPage> {
             ),
           ),
           const Text(
-            "Karakter Seçiniz",
+            "Zaman Seçiniz",
             style: TextStyle(
               color: Colors.black,
               fontSize: 20,
@@ -86,18 +92,24 @@ class _AiPageState extends State<AiPage> {
             child: ListView.separated(
               padding: const EdgeInsets.all(8),
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
+              itemCount: timeList.length,
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 8);
               },
               itemBuilder: (context, index) {
                 return Card(
-                  shape: const RoundedRectangleBorder(),
-                  color: (characterSelectedCard == index) ? Colors.blue : Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: (timeSelectedCard == index) ? Colors.blue : Colors
+                          .white,
+                      width: 2.0,
+                    ),
+                  ),
+                  color: Colors.white,
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        characterSelectedCard = index;
+                        timeSelectedCard = index;
                       });
                     },
                     child: Container(
@@ -113,7 +125,7 @@ class _AiPageState extends State<AiPage> {
                               height: 100,
                             ),
                             Text(
-                              characterList[index],
+                              timeList[index],
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -128,22 +140,73 @@ class _AiPageState extends State<AiPage> {
               },
             ),
           ),
+          const Text(
+            "Uzunluk Seçiniz",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(
+            height: 70,
+            child: ListView.separated(
+              padding: const EdgeInsets.all(8),
+              scrollDirection: Axis.horizontal,
+              itemCount: lengthList.length,
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: 8);
+              },
+              itemBuilder: (context, index) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: (lengthSelectedCard == index) ? Colors.blue : Colors
+                          .white,
+                      width: 2.0,
+                    ),
+                  ),
+                  color: Colors.white,
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        lengthSelectedCard = index;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      width: 120,
+                      child: Center(
+                        child: Text(
+                              lengthList[index],
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                              ),
+                            ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
           ElevatedButton(
-            onPressed: (subjectSelectedCard != -1 && characterSelectedCard != -1)
+            onPressed: (subjectSelectedCard != -1 && timeSelectedCard != -1 && lengthSelectedCard != -1)
                 ? () {
               Navigator.pushNamed(context, '/ai-story-detail', arguments: {
                 "subject": subjectList[subjectSelectedCard],
-                "character": characterList[characterSelectedCard]
+                "time": timeList[timeSelectedCard],
+                "length": lengthInts[lengthSelectedCard],
               });
             }
                 : null,
-            child: const Text("Başla"),
             style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.blue,
               minimumSize: const Size(200, 50),
-              primary: Colors.blue,
-              onPrimary: Colors.white,
               elevation: 5,
-            )
+            ),
+            child: const Text("Başla")
           )
         ]
         ,
@@ -154,23 +217,36 @@ class _AiPageState extends State<AiPage> {
 }
 
 List<String> subjectList = [
-  "Hayvanlar",
-  "Bitkiler",
-  "Meyveler",
-  "Renkler",
-  "Şekiller",
-  "Sayılar",
-  "Mutfak",
-  "Okul"
+  "Aşk",
+  "Bilim Kurgu",
+  "Fantastik",
+  "Korku",
+  "Dram",
+  "Macera",
+  "Gerilim",
+  "Komedi"
 ];
 
-List<String> characterList = [
-  "Ayı",
-  "Kedi",
-  "Köpek",
-  "Aslan",
-  "Kuş",
-  "Karınca",
-  "Kaplumbağa",
-  "Eşek"
+List<String> timeList = [
+  "İlk Çağ",
+  "Orta Çağ",
+  "Rönesans",
+  "1700'ler",
+  "1800'ler",
+  "1900'ler",
+  "Günümüz",
+  "2100'ler",
+  "3000'ler"
+];
+
+List<String> lengthList = [
+  "Kısa",
+  "Orta",
+  "Uzun"
+];
+
+List<int> lengthInts = [
+  1000,
+  2000,
+  3000
 ];
