@@ -8,10 +8,10 @@ class Story extends HiveObject {
   final int storyID;
 
   @HiveField(1)
-  final String storyTitle;
+  late final String storyTitle;
 
   @HiveField(2)
-  final String storyContent;
+  late final String storyContent;
 
   @HiveField(3)
   final String storyImage;
