@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon/components/scroll_back_to_top_button.dart';
 import 'package:hackathon/models/story.dart';
+import 'package:hackathon/pages/translation_page.dart';
+import 'package:hackathon/widgets/story_view.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:palette_generator/palette_generator.dart';
@@ -47,6 +49,14 @@ class _StoryDetailPageState extends State<StoryDetailPage> {
         backgroundColor: appBarColor,
         actions: [
           IconButton(
+            icon: const Icon(Icons.translate),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => TranslationPage(story: widget.story),
+              ));
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.volume_up_sharp),
             onPressed: () {},
           ),
@@ -76,43 +86,10 @@ class _StoryDetailPageState extends State<StoryDetailPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           controller: widget.scrollController,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 8.0,
-                      ),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Image.asset(
-                      'assets/images/${widget.story.storyImage}',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                widget.story.storyTitle,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(24),
-                child: Text(
-                  widget.story.storyContent,
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            ],
+          child: StoryView(
+            storyImage: widget.story.storyImage,
+            translatedTitle: widget.story.storyTitle,
+            translatedContent: widget.story.storyContent,
           ),
         ),
       ),
