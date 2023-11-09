@@ -56,14 +56,7 @@ class _AiPageState extends State<AiPage> {
                       margin: const EdgeInsets.all(8),
                       width: 120,
                       child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              "https://picsum.photos/id/237/200/300",
-                              width: 100,
-                              height: 100,
-                            ),
+                        child:
                             Text(
                               subjectList[index],
                               style: const TextStyle(
@@ -71,8 +64,6 @@ class _AiPageState extends State<AiPage> {
                                 fontSize: 20,
                               ),
                             ),
-                          ],
-                        ),
                       ),
                     ),
                   ),
@@ -116,14 +107,7 @@ class _AiPageState extends State<AiPage> {
                       margin: const EdgeInsets.all(8),
                       width: 120,
                       child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              "https://picsum.photos/id/237/200/300",
-                              width: 100,
-                              height: 100,
-                            ),
+                        child:
                             Text(
                               timeList[index],
                               style: const TextStyle(
@@ -131,8 +115,6 @@ class _AiPageState extends State<AiPage> {
                                 fontSize: 20,
                               ),
                             ),
-                          ],
-                        ),
                       ),
                     ),
                   ),
