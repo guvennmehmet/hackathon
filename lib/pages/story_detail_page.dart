@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:hackathon/components/scroll_back_to_top_button.dart';
 import 'package:hackathon/models/story.dart';
 import 'package:hackathon/pages/translation_page.dart';
@@ -26,12 +27,19 @@ class _StoryDetailPageState extends State<StoryDetailPage> {
   late PaletteGenerator _generator;
   bool isFavorite = false;
   late Box<Story> favoriteBox;
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   void initState() {
     super.initState();
     findAppBarColor();
     favoriteBox = Hive.box<Story>('favoriteStories');
+  }
+
+  speak() async {
+    await flutterTts.setLanguage("tr-TR");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(widget.story.storyContent);
   }
 
   @override
@@ -58,7 +66,9 @@ class _StoryDetailPageState extends State<StoryDetailPage> {
           ),
           IconButton(
             icon: const Icon(Icons.volume_up_sharp),
-            onPressed: () {},
+            onPressed: () {
+              speak();
+            },
           ),
           IconButton(
             icon: widget.story.isFavorite

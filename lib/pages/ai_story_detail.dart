@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:hackathon/components/scroll_back_to_top_button.dart';
 import 'package:hackathon/models/story.dart';
 import 'package:hackathon/service/ai_story_service.dart';
 import 'package:hive/hive.dart';
+
+import 'ai_translation_page.dart';
 
 
 
@@ -24,12 +27,19 @@ class _AiStoryDetailPageState extends State<AiStoryDetailPage> {
   bool isFavorite = false;
   late Box<Story> favoriteBox;
   bool isStoryGenerated = false;
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   void initState() {
     super.initState();
     favoriteBox = Hive.box<Story>('favoriteStories');
     generateStory();
+  }
+
+  speak() async {
+    await flutterTts.setLanguage("tr-TR");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(generatedStoryUI);
   }
 
   @override
@@ -47,8 +57,18 @@ class _AiStoryDetailPageState extends State<AiStoryDetailPage> {
         backgroundColor: appBarColor,
         actions: [
           IconButton(
+            icon: const Icon(Icons.translate),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => AiTranslationPage(story: Story(storyTitle: generatedStoryTitle, storyContent: generatedStoryUI, storyID: -1, storyImage: ''))),
+              );
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.volume_up_sharp),
-            onPressed: () {},
+            onPressed: () {
+              speak();
+            },
           ),
           IconButton(
             icon: const Icon(Icons.share),
