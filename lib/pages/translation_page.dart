@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/components/scroll_back_to_top_button.dart';
 import 'package:hackathon/service/ai_translate_service.dart';
 import 'package:hackathon/widgets/story_view.dart';
 import 'package:hackathon/models/story.dart';
@@ -8,9 +7,8 @@ const apiKey = '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';
 
 class TranslationPage extends StatefulWidget {
   final Story story;
-  final ScrollController? scrollController;
 
-  const TranslationPage({Key? key, required this.story, this.scrollController}) : super(key: key);
+  const TranslationPage({Key? key, required this.story}) : super(key: key);
 
   @override
   State<TranslationPage> createState() => _TranslationPageState();
@@ -48,9 +46,6 @@ class _TranslationPageState extends State<TranslationPage> {
           ),
         ),
       ),
-      floatingActionButton: widget.scrollController != null
-          ? BackToTopButton(controller: widget.scrollController!)
-          : null,
     );
   }
 }
