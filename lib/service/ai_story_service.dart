@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AIStoryService {
-  static const String apiKey = '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';
+  static const String apiKey = '';
   static const String model = 'gpt-3.5-turbo-instruct';
 
   static Future<List<String>> generateStory(String prompt, int length) async {

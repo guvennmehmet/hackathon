@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:hackathon/models/story.dart';
 
-const apiKey = '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';
+const apiKey = 'XXXXXXXXXXXXXXXX';
 
 Future<String> translateText(String targetLang, Story story) async {
   final url = Uri.parse('https://api.openai.com/v1/chat/completions');

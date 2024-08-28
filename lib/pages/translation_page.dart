@@ -4,7 +4,7 @@ import 'package:hackathon/service/ai_translate_service.dart';
 import 'package:hackathon/widgets/story_view.dart';
 import 'package:hackathon/models/story.dart';
 
-const apiKey = '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';
+const apiKey = 'XXXXXXXXXXXXXXXX';
 
 class TranslationPage extends StatefulWidget {
   final Story story;
