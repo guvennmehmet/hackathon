@@ -1,16 +1,12 @@
-# hackathon
+## hackathon
 
-A new Flutter project.
+An application developed with Flutter that allows children to create their own fairy tales using artificial intelligence.
 
-## Getting Started
+## Tech Stack
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [Dart](https://dart.dev/)
+* [Flutter](https://flutter.dev/)
+* [Hive](https://docs.hivedb.dev/#/)
+* [Http](https://pub.dev/packages/http)
+* [TTS](https://pub.dev/packages/flutter_tts)
+* [ChatGPT API](https://openai.com/api/)
